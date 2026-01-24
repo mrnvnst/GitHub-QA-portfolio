@@ -1,2 +1,2 @@
 # GitHub-QA-portfolio
-My portfolio with manual and automated testing projects. 
+It will be filled with materials soon. Stay tuned!
