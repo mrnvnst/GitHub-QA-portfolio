@@ -1,13 +1,14 @@
 ID,Check description,Status,Bug ID,TMS link
-FC-01,When tapping the “From” field entering a station name and selecting it from the list – the "From" field is filled with the selected value,Passed,,https://testit.example.com/FC-01
-FC-02,When tapping the “To” field entering a station name and selecting it from the list – the “To” fiels is filled with the selected value,Passed,,https://testit.example.com/FC-02
-FC-03,When both “From” and “To” fields are filled a route from point A to point B is built on the map,Passed,,https://testit.example.com/FC-03
-FC-04,When tapping the “From” field a panel with route history and previously built routes is displayed,Passed,,https://testit.example.com/FC-04
-FC-05,By default tapping a station on the map opens the station card,Passed,,https://testit.example.com/FC-05
-FC-06,When selecting a new station its station card is displayed,Passed,,https://testit.example.com/FC-06
-FC-07,When switching device orientation from portrait to landscape route details are displayed on the left side of the screen,Blocked,BUG-001,https://testit.example.com/FC-07
-FC-08,The route card remains collapsed when switching from portrait to landscape orientation,Blocked,BUG-001,https://testit.example.com/FC-08
-FC-09,The settings card remains closed when switching from portrait to landscape orientation,Blocked,BUG-001,https://testit.example.com/FC-09
-FC-10,When long-tapping a station the station card opens with “From here” and “To here” buttons,Failed,BUG-002,https://testit.example.com/FC-10
-FC-11,When long-tapping an empty area of the map the station card closes automatically,Passed,,https://testit.example.com/FC-11
-FC-12,When there is no internet connection an error notification is displayed,Failed,BUG-003,https://testit.example.com/FC-12
+FC-01,"When tapping the ""From"" field, entering a station name and selecting it from the list, the ""From"" field is filled with the selected value",Passed,,https://testit.example.com/FC-01
+FC-02,"When tapping the ""To"" field, entering a station name and selecting it from the list, the ""To"" field is filled with the selected value",Passed,,https://testit.example.com/FC-02
+FC-03,"When both ""From"" and ""To"" fields are filled, a route from point A to point B is built on the map",Passed,,https://testit.example.com/FC-03
+FC-04,"When tapping the ""From"" field, a panel with route history and previously built routes is displayed",Passed,,https://testit.example.com/FC-04
+FC-05,"By default, tapping a station on the map opens the station card",Passed,,https://testit.example.com/FC-05
+FC-06,"When selecting a new station, its station card is displayed",Passed,,https://testit.example.com/FC-06
+FC-07,"When switching device orientation from portrait to landscape, route details are displayed on the left side of the screen",Blocked,BUG-001,https://testit.example.com/FC-07
+FC-08,"The route card remains collapsed when switching from portrait to landscape orientation",Blocked,BUG-001,https://testit.example.com/FC-08
+FC-09,"The settings card remains closed when switching from portrait to landscape orientation",Blocked,BUG-001,https://testit.example.com/FC-09
+FC-10,"When long-tapping a station, the station card opens with ""From here"" and ""To here"" buttons",Failed,BUG-002,https://testit.example.com/FC-10
+FC-11,"When long-tapping an empty area of the map, the station card closes automatically",Passed,,https://testit.example.com/FC-11
+FC-12,"When there is no internet connection, an error notification is displayed",Failed,BUG-003,https://testit.example.com/FC-12
+
