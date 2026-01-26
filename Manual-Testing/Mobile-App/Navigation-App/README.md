@@ -1,0 +1,51 @@
+### Мобильное тестирование Android-приложения
+
+🇷🇺 | **RU** 
+
+**Описание проекта:**
+
+Проект посвящён ручному тестированию Android-приложения после проведения рефакторинга.
+Приложение предназначено для навигации и построения маршрутов в метро различных городов.
+Основная цель тестирования — проверить корректность работы функциональности, затронутой изменениями, и оценить стабильность приложения перед релизом новой версии.
+
+#### В рамках проекта выполнено:
+
+- функциональное тестирование затронутых компонентов;
+- регрессионное тестирование ключевой функциональности;
+- подготовка чек-листов;
+- заведение баг-репортов с визуальными доказательствами;
+- составление итогового отчёта о тестировании.
+
+#### Артефакты:
+
+- чек-листы: `checklists/`
+- баг-репорты и скриншоты: `bug-reports/`
+- отчёт о тестировании: `test-report/`
+- описание объёма и подхода к тестированию: `project-overview/`
+
+---
+
+### Mobile Application Testing (Android)
+
+🇬🇧 | **EN** 
+
+**Project description:**
+
+This project focuses on manual testing of an Android application after refactoring.
+The application is designed for metro navigation and route planning across different cities.
+The main goal of testing was to verify the correctness of the functionality affected by the changes and to assess application stability before releasing a new version.
+
+#### The project included:
+
+- functional testing of affected components;
+- regression testing of key functionality;
+- preparation of checklists;
+- establishment of bug reports with visual evidence;
+- preparation of the final test report.
+
+#### Project structure:
+
+- `checklists/` — functional and regression checklists 
+- `bug-reports/` — bug reports and screenshots  
+- `test-report/` — test summary and release assessment
+- `project-overview/` — testing scope, environment and approach  
