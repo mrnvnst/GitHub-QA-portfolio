@@ -1,0 +1,30 @@
+Crash log for BUG-001
+Application: NavAppName
+Version: 3.6
+Device: Honor 8 (Android 9.0) – Emulator
+
+--------- LOG ---------
+
+2025-03-18 22:00:35.987  1743-1801  WindowManager system_process I  
+Screen frozen for +162ms due to Window{f37870f u0 ru.navappname/ru.navappname.LaunchActivity}
+
+2025-03-18 22:00:37.219  1743-1872  ActivityManager system_process I
+Process ru.navappname:Metrica (pid 12817) has died: vis TOP 
+
+2025-03-18 22:00:37.220  1743-1872  ActivityManager system_process W  
+Scheduling restart of crashed service ru.navappname/com.app.metrica.MetricaService in 20448ms
+
+2025-03-18 22:00:37.447  1743-1827  InputDispatcher system_process W  
+channel 'f37870f ru.navappname/ru.navappname.LaunchActivity (server)' ~ Consumer closed input channel or an error occurred. events=0x9
+
+2025-03-18 22:00:37.447  1743-1827  InputDispatcher system_process E  
+channel 'f37870f ru.navappname/ru.navappname.LaunchActivity (server)' ~ Channel is unrecoverably broken and will be disposed!
+
+2025-03-18 22:00:37.451  1743-1811  ActivityManager system_process I
+Process ru.navappname (pid 12767) has died: fore TOP
+
+2025-03-18 22:00:37.453  1743-1811  ActivityManager system_process W
+Force removing ActivityRecord{237c62b u0 ru.navappname/.LaunchActivity t26}: app died, no saved state
+
+2025-03-18 22:00:37.453  1743-2036  WindowManager system_process I
+WIN DEATH: Window{f37870f u0 ru.navappname/ru.navappname.LaunchActivity}
