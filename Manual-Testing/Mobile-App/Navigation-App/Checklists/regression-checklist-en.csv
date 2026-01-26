@@ -1,0 +1,13 @@
+ID,Check description,Status,Bug ID,TMS link
+RG-01,On first app launch the application requests access to geolocation,Passed,,https://testit.example.com/RG-01
+RG-02,The updated application retains settings from the previous version,Failed,BUG-004,https://testit.example.com/RG-02
+RG-03,After an incoming call ends the application preserves entered data,Passed,,https://testit.example.com/RG-03
+RG-04,When the screen is locked the application continues running in the background,Passed,,https://testit.example.com/RG-04
+RG-05,When a notification is received the application continues working in its current state,Passed,,https://testit.example.com/RG-05
+RG-06,After zooming in on the map it can be zoomed out using a second double tap,Passed,,https://testit.example.com/RG-06
+RG-07,The station card is closed by tapping the close icon,Passed,,https://testit.example.com/RG-07
+RG-08,When long-tapping a station and moving focus to another station the station card remains open,Passed,,https://testit.example.com/RG-08
+RG-09,When English is selected in settings the application language switches to English,Failed,BUG-005,https://testit.example.com/RG-09
+RG-10,When the “Automatic” mode is selected the app theme switches to dark at 18:00 MSK,Failed,BUG-006,https://testit.example.com/RG-10
+RG-11,When tapping the “Feedback” button the support page opens in a WebView,Failed,BUG-007,https://testit.example.com/RG-11
+RG-12,Scrolling is available to view full route details in landscape mode,Passed,,https://testit.example.com/RG-12
