@@ -23,6 +23,11 @@
 - отчёт о тестировании: `test-report/`
 - описание объёма и подхода к тестированию: `project-overview/`
 
+В данном репозитории представлен **сокращённый демонстрационный вариант**
+тестовой документации и артефактов, отражающий подход к тестированию,
+структуру чек-листов и формат оформления баг-репортов.
+
+
 ---
 
 ### Mobile Application Testing (Android)
@@ -49,3 +54,7 @@ The main goal of testing was to verify the correctness of the functionality affe
 - `bug-reports/` — bug reports and screenshots  
 - `test-report/` — test summary and release assessment
 - `project-overview/` — testing scope, environment and approach  
+
+This repository contains a **reduced demo version** of the test documentation
+and artifacts, demonstrating the testing approach, checklist structure,
+and bug reporting format used in the main project.
