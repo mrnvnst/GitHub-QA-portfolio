@@ -1,6 +1,6 @@
 ID,Check description,Status,Bug ID,TMS link
 RG-01,On first app launch the application requests access to geolocation,Passed,,https://testit.example.com/RG-01
-RG-02,The updated application retains settings from the previous version,Failed,BUG-004,https://testit.example.com/RG-02
+RG-02,The updated application retains settings from the previous version,Failed,"BUG-004, BUG-005",https://testit.example.com/RG-02
 RG-03,After an incoming call ends the application preserves entered data,Passed,,https://testit.example.com/RG-03
 RG-04,When the screen is locked the application continues running in the background,Passed,,https://testit.example.com/RG-04
 RG-05,When a notification is received the application continues working in its current state,Passed,,https://testit.example.com/RG-05
