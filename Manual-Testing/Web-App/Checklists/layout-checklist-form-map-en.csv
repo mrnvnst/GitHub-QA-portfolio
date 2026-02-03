@@ -1,0 +1,17 @@
+ID,Check description,"Yandex Browser 800x600","Firefox 1920x1080",Bug ID,TMS Link
+LC-01,"Buttons in the ""Travel modes"" panel are displayed in a single horizontal row",Passed,Passed,,testitexample.com
+LC-02,"The text label of the first travel mode button is ""Optimal""",Passed,Passed,,testitexample.com
+LC-03,"When another travel mode button is selected, the text color of the inactive mode changes to grey",Passed,Passed,,testitexample.com
+LC-04,"Below the ""Travel modes"" panel, a ""Transportation methods"" panel containing icons is displayed",Passed,Passed,,testitexample.com
+LC-05,"Below the ""Transportation methods"" panel, the label ""Car sharing ~ n RUB"" is displayed",Passed,Passed,BR-005,testitexample.com
+LC-06,"Below the car image, a label with tariff features is displayed",,Passed,,testitexample.com
+LC-07,"Below the tariff selection buttons, a block with information about the nearest available car is displayed",Passed,Passed,,testitexample.com
+LC-08,"When clicking the ""Cancel"" button, a window with a trip cancellation message is displayed",Failed,Failed,BR-006,testitexample.com
+LC-09,"Below the ""Driver’s license"" field, the ""Payment method"" field is displayed",Passed,Passed,,testitexample.com
+LC-10,"After entering card details and clicking the confirmation button, the ""Payment method"" field is updated",Passed,Passed,,testitexample.com
+LC-11,"The label ""Add"" changes to ""Card""",Passed,Passed,,testitexample.com
+LC-12,"Car icons are displayed on the roads of the map and correspond to the logic of vehicle movement",Failed,Failed,BR-007,testitexample.com
+LC-13,"All available cars are displayed on the map regardless of the selected tariff",Failed,Failed,BR-008,testitexample.com
+LC-14,"One icon of the nearest available car of the selected tariff is automatically highlighted on the map",Failed,Failed,BR-009,testitexample.com
+LC-15,"A label with the car brand name is displayed above the car icon",Failed,Failed,BR-010,testitexample.com
+

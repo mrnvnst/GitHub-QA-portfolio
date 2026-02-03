@@ -1,0 +1,15 @@
+ID,Check description,Status,Bug ID,TMS Link
+LG-01,"By default and until the form is filled in, the ""Link"" button in the ""Add card"" window is inactive",Passed,,testitexample.com
+LG-02,"Clicking the \"Add card\" button opens the ""Add card"" window",Passed,,testitexample.com
+LG-03,"When valid values ""836467327491"" are entered into the ""Card number"" field and the field loses focus, the system automatically inserts spaces in the nnnn nnnn nnnn format; the displayed value is ""8364 6732 7491""",Failed,BR-001,testitexample.com
+LG-04,"Clicking the ""Link"" button navigates back to the ""Payment method"" window",Passed,,testitexample.com
+LG-05,"After exiting the ""Add card"" form, the linked card is displayed in the ""Payment method"" window in the ""Card nnnn"" format, where nnnn are the last four digits of the card number",Failed,BR-002,testitexample.com
+LG-06,"If only one card is added, it is selected automatically",Passed,,testitexample.com
+LG-07,"When 12 valid characters ""327491836467"" are entered into the ""Card number"" field, the system accepts the input",Passed,,testitexample.com
+LG-08,"When 7 characters ""8597365"" are entered into the ""Card number"" field, the ""Link"" button remains inactive",Passed,,testitexample.com
+LG-09,"When valid values in the range from 0000 to 9999 inclusive are entered into the ""Card number"" field as ""666666666666"", the system accepts the input",Passed,,testitexample.com
+LG-10,"When digits and special characters ""7462965837$%"" are entered into the ""Card number"" field, the system does not accept the input",Failed,BR-003,testitexample.com
+LG-11,"When valid values in the range from 01 to 99 inclusive are entered into the ""Code"" field as ""99"", the system accepts the input",Passed,,testitexample.com
+LG-12,"When a digit and a letter ""3D"" are entered into the ""Code"" field, the system does not accept the input",Failed,BR-004,testitexample.com
+LG-13,"When 12 valid characters ""327491836467"" are entered into the ""Card number"" field and 2 valid characters ""76"" are entered into the ""Code"" field, the ""Link"" button becomes active",Passed,,testitexample.com
+
