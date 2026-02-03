@@ -1,6 +1,6 @@
 ID,Check description,Status,Bug ID,TMS Link
 LG-01,"By default and until the form is filled in, the ""Link"" button in the ""Add card"" window is inactive",Passed,,testitexample.com
-LG-02,"Clicking the \"Add card\" button opens the ""Add card"" window",Passed,,testitexample.com
+LG-02,"Clicking the ""Add card"" button opens the ""Add card"" window",Passed,,testitexample.com
 LG-03,"When valid values ""836467327491"" are entered into the ""Card number"" field and the field loses focus, the system automatically inserts spaces in the nnnn nnnn nnnn format; the displayed value is ""8364 6732 7491""",Failed,BR-001,testitexample.com
 LG-04,"Clicking the ""Link"" button navigates back to the ""Payment method"" window",Passed,,testitexample.com
 LG-05,"After exiting the ""Add card"" form, the linked card is displayed in the ""Payment method"" window in the ""Card nnnn"" format, where nnnn are the last four digits of the card number",Failed,BR-002,testitexample.com
