@@ -1,4 +1,4 @@
-### Тестирование мобильного Android-приложения
+### Тестирование мобильного Android-приложения: приложение для построения маршрутов в метро
 
 🇷🇺 | **RU** 
 
@@ -18,19 +18,18 @@
 
 #### Артефакты:
 
-- чек-листы: `checklists/`
-- баг-репорты и скриншоты: `bug-reports/`
-- отчёт о тестировании: `test-report/`
-- описание объёма и подхода к тестированию: `project-overview/`
+- чек-листы: `Checklists/`
+- баг-репорты и скриншоты: `Bug-Reports/`
+- отчёт о тестировании: `Test-Report/`
+- описание объёма и подхода к тестированию: `Project-Overview.md`
 
 В данном репозитории представлен **сокращённый демонстрационный вариант**
-тестовой документации и артефактов, отражающий подход к тестированию,
-структуру чек-листов и формат оформления баг-репортов.
+тестовой документации и артефактов, отражающий подход к тестированию, структуру чек-листов и формат оформления баг-репортов.
 
 
 ---
 
-### Mobile Application Testing (Android)
+### Mobile Application Testing (Android): app for underground navigation
 
 🇬🇧 | **EN** 
 
@@ -50,11 +49,9 @@ The main goal of testing was to verify the correctness of the functionality affe
 
 #### Project structure:
 
-- `checklists/` — functional and regression checklists 
-- `bug-reports/` — bug reports and screenshots  
-- `test-report/` — test summary and release assessment
-- `project-overview/` — testing scope, environment and approach  
+- `Checklists/` — functional and regression checklists 
+- `Bug-Reports/` — bug reports and screenshots  
+- `Test-Report/` — test summary and release assessment
+- `Project-Overview.md` — testing scope, environment and approach  
 
-This repository contains a **reduced demo version** of the test documentation
-and artifacts, demonstrating the testing approach, checklist structure,
-and bug reporting format used in the main project.
+This repository contains a **reduced demo version** of the test documentation and artifacts, demonstrating the testing approach, checklist structure, and bug reporting format used in the main project.
