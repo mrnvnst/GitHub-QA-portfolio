@@ -1,0 +1,51 @@
+[
+  { "scenario": "80_success_valid_orderId", "orderId": 6, "productsList": [{ "id": 1, "quantity": 4 }], "expectedStatus": 200 },
+
+  { "scenario": "81_order_not_found", "orderId": 32, "productsList": [{ "id": 1, "quantity": 4 }], "expectedStatus": 404 },
+
+  { "scenario": "82_productsList_string", "orderId": 6, "productsList": "invalid", "expectedStatus": 409 },
+
+  { "scenario": "83_productsList_empty_array", "orderId": 6, "productsList": [], "expectedStatus": 409 },
+
+  { "scenario": "84_productsList_missing", "orderId": 6, "productsList": null, "expectedStatus": 409 },
+
+  { "scenario": "85_sum_same_id", "orderId": 6, "productsList": [{ "id": 1, "quantity": 1 }], "expectedStatus": 200 },
+
+  { "scenario": "86_max_stock_reached", "orderId": 6, "productsList": [{ "id": 1, "quantity": 999 }], "expectedStatus": 409 },
+
+  { "scenario": "87_product_not_in_stock", "orderId": 6, "productsList": [{ "id": 9999, "quantity": 1 }], "expectedStatus": 409 },
+
+  { "scenario": "88_missing_product_id", "orderId": 6, "productsList": [{ "quantity": 1 }], "expectedStatus": 409 },
+
+  { "scenario": "89_product_id_zero", "orderId": 6, "productsList": [{ "id": 0, "quantity": 1 }], "expectedStatus": 409 },
+
+  { "scenario": "90_product_id_negative", "orderId": 6, "productsList": [{ "id": -11, "quantity": 1 }], "expectedStatus": 409 },
+
+  { "scenario": "91_product_id_overflow", "orderId": 6, "productsList": [{ "id": 2147483948, "quantity": 1 }], "expectedStatus": 409 },
+
+  { "scenario": "92_product_id_string", "orderId": 6, "productsList": [{ "id": "семнадцать", "quantity": 1 }], "expectedStatus": 409 },
+
+  { "scenario": "93_product_id_special_chars", "orderId": 6, "productsList": [{ "id": "&!*", "quantity": 1 }], "expectedStatus": 409 },
+
+  { "scenario": "94_product_id_boolean", "orderId": 6, "productsList": [{ "id": false, "quantity": 1 }], "expectedStatus": 409 },
+
+  { "scenario": "95_product_id_empty_string", "orderId": 6, "productsList": [{ "id": "", "quantity": 1 }], "expectedStatus": 409 },
+
+  { "scenario": "96_product_id_not_in_db", "orderId": 6, "productsList": [{ "id": 8888, "quantity": 1 }], "expectedStatus": 409 },
+
+  { "scenario": "97_quantity_missing", "orderId": 6, "productsList": [{ "id": 1 }], "expectedStatus": 409 },
+
+  { "scenario": "98_quantity_zero", "orderId": 6, "productsList": [{ "id": 1, "quantity": 0 }], "expectedStatus": 409 },
+
+  { "scenario": "99_quantity_negative", "orderId": 6, "productsList": [{ "id": 1, "quantity": -4 }], "expectedStatus": 409 },
+
+  { "scenario": "100_quantity_float", "orderId": 6, "productsList": [{ "id": 1, "quantity": 3.8 }], "expectedStatus": 409 },
+
+  { "scenario": "101_quantity_empty_string", "orderId": 6, "productsList": [{ "id": 1, "quantity": "" }], "expectedStatus": 409 },
+
+  { "scenario": "102_quantity_overflow", "orderId": 6, "productsList": [{ "id": 1, "quantity": 2147483948 }], "expectedStatus": 409 },
+
+  { "scenario": "103_quantity_string", "orderId": 6, "productsList": [{ "id": 1, "quantity": "три" }], "expectedStatus": 409 },
+
+  { "scenario": "104_quantity_null", "orderId": 6, "productsList": [{ "id": 1, "quantity": null }], "expectedStatus": 409 }
+]

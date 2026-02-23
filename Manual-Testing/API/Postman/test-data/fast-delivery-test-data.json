@@ -1,0 +1,95 @@
+[
+  { "scenario": "30_success_1_item_light_weight_time_7", "productsCount": 1, "productsWeight": 0.1, "deliveryTime": 7, "expectedStatus": 200, "expectedPossible": true, "expectedHostCost": 23, "expectedClientCost": 0 },
+
+  { "scenario": "31_success_14_items_weight_6_time_21", "productsCount": 14, "productsWeight": 6, "deliveryTime": 21, "expectedStatus": 200, "expectedPossible": true, "expectedHostCost": 43, "expectedClientCost": 0 },
+
+  { "scenario": "32_missing_all_fields", "productsCount": null, "productsWeight": null, "deliveryTime": null, "expectedStatus": 400 },
+
+  { "scenario": "33_success_count_6", "productsCount": 6, "productsWeight": 0.1, "deliveryTime": 7, "expectedStatus": 200, "expectedPossible": true, "expectedHostCost": 23, "expectedClientCost": 0 },
+
+  { "scenario": "34_success_count_7_boundary", "productsCount": 7, "productsWeight": 0.1, "deliveryTime": 7, "expectedStatus": 200, "expectedPossible": true, "expectedHostCost": 23, "expectedClientCost": 0 },
+
+  { "scenario": "35_success_count_8_new_tariff", "productsCount": 8, "productsWeight": 0.1, "deliveryTime": 7, "expectedStatus": 200, "expectedPossible": true, "expectedHostCost": 43, "expectedClientCost": 0 },
+
+  { "scenario": "36_success_count_9", "productsCount": 9, "productsWeight": 0.1, "deliveryTime": 7, "expectedStatus": 200, "expectedPossible": true, "expectedHostCost": 43, "expectedClientCost": 0 },
+
+  { "scenario": "37_success_count_11", "productsCount": 11, "productsWeight": 0.1, "deliveryTime": 7, "expectedStatus": 200, "expectedPossible": true, "expectedHostCost": 43, "expectedClientCost": 0 },
+
+  { "scenario": "38_success_count_13", "productsCount": 13, "productsWeight": 0.1, "deliveryTime": 7, "expectedStatus": 200, "expectedPossible": true, "expectedHostCost": 43, "expectedClientCost": 0 },
+
+  { "scenario": "39_success_count_14_boundary", "productsCount": 14, "productsWeight": 0.1, "deliveryTime": 7, "expectedStatus": 200, "expectedPossible": true, "expectedHostCost": 43, "expectedClientCost": 0 },
+
+  { "scenario": "40_count_15_extra_client_cost", "productsCount": 15, "productsWeight": 0.1, "deliveryTime": 7, "expectedStatus": 200, "expectedPossible": true, "expectedHostCost": 43, "expectedClientCost": 99 },
+
+  { "scenario": "41_count_17_extra_client_cost", "productsCount": 17, "productsWeight": 0.1, "deliveryTime": 7, "expectedStatus": 200, "expectedPossible": true, "expectedHostCost": 43, "expectedClientCost": 99 },
+
+  { "scenario": "42_invalid_count_zero", "productsCount": 0, "productsWeight": 0.1, "deliveryTime": 7, "expectedStatus": 400 },
+
+  { "scenario": "43_invalid_count_negative", "productsCount": -1, "productsWeight": 0.1, "deliveryTime": 7, "expectedStatus": 400 },
+
+  { "scenario": "44_missing_count", "productsCount": null, "productsWeight": 0.1, "deliveryTime": 7, "expectedStatus": 400 },
+
+  { "scenario": "45_invalid_count_blank", "productsCount": " ", "productsWeight": 0.1, "deliveryTime": 7, "expectedStatus": 400 },
+
+  { "scenario": "46_invalid_count_string", "productsCount": "шесть", "productsWeight": 0.1, "deliveryTime": 7, "expectedStatus": 400 },
+
+  { "scenario": "47_invalid_count_overflow", "productsCount": 2147483795, "productsWeight": 0.1, "deliveryTime": 7, "expectedStatus": 400 },
+
+  { "scenario": "48_weight_0_9", "productsCount": 1, "productsWeight": 0.9, "deliveryTime": 7, "expectedStatus": 200, "expectedPossible": true, "expectedHostCost": 23, "expectedClientCost": 0 },
+
+  { "scenario": "49_weight_2_4", "productsCount": 1, "productsWeight": 2.4, "deliveryTime": 7, "expectedStatus": 200, "expectedPossible": true, "expectedHostCost": 23, "expectedClientCost": 0 },
+
+  { "scenario": "50_weight_2_5_boundary", "productsCount": 1, "productsWeight": 2.5, "deliveryTime": 7, "expectedStatus": 200, "expectedPossible": true, "expectedHostCost": 23, "expectedClientCost": 0 },
+
+  { "scenario": "51_weight_2_6_new_tariff", "productsCount": 1, "productsWeight": 2.6, "deliveryTime": 7, "expectedStatus": 200, "expectedPossible": true, "expectedHostCost": 43, "expectedClientCost": 0 },
+
+  { "scenario": "52_weight_2_7", "productsCount": 1, "productsWeight": 2.7, "deliveryTime": 7, "expectedStatus": 200, "expectedPossible": true, "expectedHostCost": 43, "expectedClientCost": 0 },
+
+  { "scenario": "53_weight_4_3", "productsCount": 1, "productsWeight": 4.3, "deliveryTime": 7, "expectedStatus": 200, "expectedPossible": true, "expectedHostCost": 43, "expectedClientCost": 0 },
+
+  { "scenario": "54_weight_5_9", "productsCount": 1, "productsWeight": 5.9, "deliveryTime": 7, "expectedStatus": 200, "expectedPossible": true, "expectedHostCost": 43, "expectedClientCost": 0 },
+
+  { "scenario": "55_weight_6_boundary", "productsCount": 1, "productsWeight": 6, "deliveryTime": 7, "expectedStatus": 200, "expectedPossible": true, "expectedHostCost": 43, "expectedClientCost": 0 },
+
+  { "scenario": "56_weight_6_1_extra_client_cost", "productsCount": 1, "productsWeight": 6.1, "deliveryTime": 7, "expectedStatus": 200, "expectedPossible": true, "expectedHostCost": 43, "expectedClientCost": 99 },
+
+  { "scenario": "57_weight_7_extra_client_cost", "productsCount": 1, "productsWeight": 7, "deliveryTime": 7, "expectedStatus": 200, "expectedPossible": true, "expectedHostCost": 43, "expectedClientCost": 99 },
+
+  { "scenario": "58_weight_13_extra_client_cost", "productsCount": 1, "productsWeight": 13, "deliveryTime": 7, "expectedStatus": 200, "expectedPossible": true, "expectedHostCost": 43, "expectedClientCost": 99 },
+
+  { "scenario": "59_invalid_weight_zero", "productsCount": 1, "productsWeight": 0, "deliveryTime": 7, "expectedStatus": 400 },
+
+  { "scenario": "60_invalid_weight_missing", "productsCount": 1, "productsWeight": null, "deliveryTime": 7, "expectedStatus": 400 },
+
+  { "scenario": "61_invalid_weight_blank", "productsCount": 1, "productsWeight": " ", "deliveryTime": 7, "expectedStatus": 400 },
+
+  { "scenario": "62_invalid_weight_string", "productsCount": 1, "productsWeight": "два", "deliveryTime": 7, "expectedStatus": 400 },
+
+  { "scenario": "63_invalid_weight_overflow", "productsCount": 1, "productsWeight": 2147483795, "deliveryTime": 7, "expectedStatus": 400 },
+
+  { "scenario": "64_missing_weight", "productsCount": 1, "productsWeight": null, "deliveryTime": 7, "expectedStatus": 400 },
+
+  { "scenario": "65_time_16", "productsCount": 1, "productsWeight": 0.1, "deliveryTime": 16, "expectedStatus": 200, "expectedPossible": true, "expectedHostCost": 23, "expectedClientCost": 0 },
+
+  { "scenario": "66_time_20", "productsCount": 1, "productsWeight": 0.1, "deliveryTime": 20, "expectedStatus": 200, "expectedPossible": true, "expectedHostCost": 23, "expectedClientCost": 0 },
+
+  { "scenario": "67_time_21_boundary", "productsCount": 1, "productsWeight": 0.1, "deliveryTime": 21, "expectedStatus": 200, "expectedPossible": true, "expectedHostCost": 23, "expectedClientCost": 0 },
+
+  { "scenario": "68_time_6_outside", "productsCount": 1, "productsWeight": 0.1, "deliveryTime": 6, "expectedStatus": 200, "expectedPossible": false },
+
+  { "scenario": "70_time_22_outside", "productsCount": 1, "productsWeight": 0.1, "deliveryTime": 22, "expectedStatus": 200, "expectedPossible": false },
+
+  { "scenario": "71_time_23_outside", "productsCount": 1, "productsWeight": 0.1, "deliveryTime": 23, "expectedStatus": 200, "expectedPossible": false },
+
+  { "scenario": "72_time_0_invalid", "productsCount": 1, "productsWeight": 0.1, "deliveryTime": 0, "expectedStatus": 200, "expectedPossible": false },
+
+  { "scenario": "73_missing_time", "productsCount": 1, "productsWeight": 0.1, "deliveryTime": null, "expectedStatus": 400 },
+
+  { "scenario": "74_time_blank", "productsCount": 1, "productsWeight": 0.1, "deliveryTime": " ", "expectedStatus": 400 },
+
+  { "scenario": "75_time_empty", "productsCount": 1, "productsWeight": 0.1, "deliveryTime": "", "expectedStatus": 400 },
+
+  { "scenario": "76_time_string", "productsCount": 1, "productsWeight": 0.1, "deliveryTime": "десять", "expectedStatus": 400 },
+
+  { "scenario": "77_time_overflow", "productsCount": 1, "productsWeight": 0.1, "deliveryTime": 2147483795, "expectedStatus": 400 }
+]

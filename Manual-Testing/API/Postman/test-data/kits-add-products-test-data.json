@@ -1,0 +1,300 @@
+[
+  {
+    "scenario": "01_valid_existing_kit",
+    "kitId": 1,
+    "requestBody": [{ "id": 10, "quantity": 3 }],
+    "expectedStatus": 200,
+    "shouldModifyKit": true
+  },
+  {
+    "scenario": "02_kit_not_found",
+    "kitId": 67,
+    "requestBody": [{ "id": 10, "quantity": 3 }],
+    "expectedStatus": 404,
+    "shouldModifyKit": false
+  },
+  {
+    "scenario": "03_productsList_string",
+    "kitId": 1,
+    "requestBody": "invalid_string",
+    "expectedStatus": 400,
+    "shouldModifyKit": false
+  },
+  {
+    "scenario": "04_missing_productsList",
+    "kitId": 1,
+    "requestBody": null,
+    "expectedStatus": 400,
+    "shouldModifyKit": false
+  },
+  {
+    "scenario": "05_empty_productsList",
+    "kitId": 1,
+    "requestBody": [],
+    "expectedStatus": 400,
+    "shouldModifyKit": false
+  },
+  {
+    "scenario": "06_valid_existing_id_quantity",
+    "kitId": 1,
+    "requestBody": [{ "id": 12, "quantity": 3 }],
+    "expectedStatus": 200,
+    "shouldModifyKit": true
+  },
+  {
+    "scenario": "07_invalid_id_not_exist",
+    "kitId": 1,
+    "requestBody": [{ "id": 127, "quantity": 2 }],
+    "expectedStatus": 400,
+    "shouldModifyKit": false
+  },
+  {
+    "scenario": "08_valid_large_quantity",
+    "kitId": 1,
+    "requestBody": [{ "id": 12, "quantity": 157 }],
+    "expectedStatus": 200,
+    "shouldModifyKit": true
+  },
+  {
+    "scenario": "09_missing_product_id",
+    "kitId": 1,
+    "requestBody": [{ "quantity": 2 }],
+    "expectedStatus": 400,
+    "shouldModifyKit": false
+  },
+  {
+    "scenario": "10_id_zero",
+    "kitId": 1,
+    "requestBody": [{ "id": 0, "quantity": 2 }],
+    "expectedStatus": 400,
+    "shouldModifyKit": false
+  },
+  {
+    "scenario": "11_id_negative",
+    "kitId": 1,
+    "requestBody": [{ "id": -7, "quantity": 2 }],
+    "expectedStatus": 400,
+    "shouldModifyKit": false
+  },
+  {
+    "scenario": "12_id_overflow",
+    "kitId": 1,
+    "requestBody": [{ "id": 2147483795, "quantity": 2 }],
+    "expectedStatus": 400,
+    "shouldModifyKit": false
+  },
+  {
+    "scenario": "13_id_string",
+    "kitId": 1,
+    "requestBody": [{ "id": "тридцать", "quantity": 2 }],
+    "expectedStatus": 400,
+    "shouldModifyKit": false
+  },
+  {
+    "scenario": "14_id_special_chars",
+    "kitId": 1,
+    "requestBody": [{ "id": "%^$", "quantity": 2 }],
+    "expectedStatus": 400,
+    "shouldModifyKit": false
+  },
+  {
+    "scenario": "15_id_boolean",
+    "kitId": 1,
+    "requestBody": [{ "id": true, "quantity": 2 }],
+    "expectedStatus": 400,
+    "shouldModifyKit": false
+  },
+  {
+    "scenario": "16_id_empty_string",
+    "kitId": 1,
+    "requestBody": [{ "id": "", "quantity": 2 }],
+    "expectedStatus": 400,
+    "shouldModifyKit": false
+  },
+  {
+    "scenario": "17_missing_quantity",
+    "kitId": 1,
+    "requestBody": [{ "id": 10 }],
+    "expectedStatus": 400,
+    "shouldModifyKit": false
+  },
+  {
+    "scenario": "18_quantity_string",
+    "kitId": 1,
+    "requestBody": [{ "id": 10, "quantity": "семь" }],
+    "expectedStatus": 400,
+    "shouldModifyKit": false
+  },
+  {
+    "scenario": "19_quantity_zero",
+    "kitId": 1,
+    "requestBody": [{ "id": 10, "quantity": 0 }],
+    "expectedStatus": 400,
+    "shouldModifyKit": false
+  },
+  {
+    "scenario": "20_quantity_fractional",
+    "kitId": 1,
+    "requestBody": [{ "id": 10, "quantity": 7.4 }],
+    "expectedStatus": 400,
+    "shouldModifyKit": false
+  },
+  {
+    "scenario": "21_quantity_empty",
+    "kitId": 1,
+    "requestBody": [{ "id": 10, "quantity": "" }],
+    "expectedStatus": 400,
+    "shouldModifyKit": false
+  },
+  {
+    "scenario": "22_quantity_negative",
+    "kitId": 1,
+    "requestBody": [{ "id": 10, "quantity": -3 }],
+    "expectedStatus": 400,
+    "shouldModifyKit": false
+  },
+  {
+    "scenario": "23_quantity_overflow",
+    "kitId": 1,
+    "requestBody": [{ "id": 10, "quantity": 2147483795 }],
+    "expectedStatus": 400,
+    "shouldModifyKit": false
+  },
+  {
+    "scenario": "24_duplicate_product_sum",
+    "kitId": 1,
+    "requestBody": [
+      { "id": 12, "quantity": 1 },
+      { "id": 12, "quantity": 5 }
+    ],
+    "expectedStatus": 200,
+    "shouldModifyKit": true,
+    "expectedSummedQuantity": 6
+  },
+  {
+    "scenario": "25_add_17_unique_products",
+    "kitId": 1,
+    "requestBody": [
+      { "id": 1, "quantity": 1 },
+      { "id": 2, "quantity": 1 },
+      { "id": 3, "quantity": 1 },
+      { "id": 4, "quantity": 1 },
+      { "id": 5, "quantity": 1 },
+      { "id": 6, "quantity": 1 },
+      { "id": 7, "quantity": 1 },
+      { "id": 8, "quantity": 1 },
+      { "id": 9, "quantity": 1 },
+      { "id": 10, "quantity": 1 },
+      { "id": 11, "quantity": 1 },
+      { "id": 12, "quantity": 1 },
+      { "id": 13, "quantity": 1 },
+      { "id": 14, "quantity": 1 },
+      { "id": 15, "quantity": 1 },
+      { "id": 16, "quantity": 1 },
+      { "id": 17, "quantity": 1 }
+    ],
+    "expectedStatus": 200,
+    "shouldModifyKit": true
+  },
+  {
+    "scenario": "26_add_29_unique_products",
+    "kitId": 1,
+    "requestBody": [
+      { "id": 1, "quantity": 1 }, { "id": 2, "quantity": 1 },
+      { "id": 3, "quantity": 1 }, { "id": 4, "quantity": 1 },
+      { "id": 5, "quantity": 1 }, { "id": 6, "quantity": 1 },
+      { "id": 7, "quantity": 1 }, { "id": 8, "quantity": 1 },
+      { "id": 9, "quantity": 1 }, { "id": 10, "quantity": 1 },
+      { "id": 11, "quantity": 1 }, { "id": 12, "quantity": 1 },
+      { "id": 13, "quantity": 1 }, { "id": 14, "quantity": 1 },
+      { "id": 15, "quantity": 1 }, { "id": 16, "quantity": 1 },
+      { "id": 17, "quantity": 1 }, { "id": 18, "quantity": 1 },
+      { "id": 19, "quantity": 1 }, { "id": 20, "quantity": 1 },
+      { "id": 21, "quantity": 1 }, { "id": 22, "quantity": 1 },
+      { "id": 23, "quantity": 1 }, { "id": 24, "quantity": 1 },
+      { "id": 25, "quantity": 1 }, { "id": 26, "quantity": 1 },
+      { "id": 27, "quantity": 1 }, { "id": 28, "quantity": 1 },
+      { "id": 29, "quantity": 1 }
+    ],
+    "expectedStatus": 200,
+    "shouldModifyKit": true
+  },
+  {
+    "scenario": "27_add_30_unique_products",
+    "kitId": 1,
+    "requestBody": [
+      { "id": 1, "quantity": 1 }, { "id": 2, "quantity": 1 },
+      { "id": 3, "quantity": 1 }, { "id": 4, "quantity": 1 },
+      { "id": 5, "quantity": 1 }, { "id": 6, "quantity": 1 },
+      { "id": 7, "quantity": 1 }, { "id": 8, "quantity": 1 },
+      { "id": 9, "quantity": 1 }, { "id": 10, "quantity": 1 },
+      { "id": 11, "quantity": 1 }, { "id": 12, "quantity": 1 },
+      { "id": 13, "quantity": 1 }, { "id": 14, "quantity": 1 },
+      { "id": 15, "quantity": 1 }, { "id": 16, "quantity": 1 },
+      { "id": 17, "quantity": 1 }, { "id": 18, "quantity": 1 },
+      { "id": 19, "quantity": 1 }, { "id": 20, "quantity": 1 },
+      { "id": 21, "quantity": 1 }, { "id": 22, "quantity": 1 },
+      { "id": 23, "quantity": 1 }, { "id": 24, "quantity": 1 },
+      { "id": 25, "quantity": 1 }, { "id": 26, "quantity": 1 },
+      { "id": 27, "quantity": 1 }, { "id": 28, "quantity": 1 },
+      { "id": 29, "quantity": 1 }, { "id": 30, "quantity": 1 }
+    ],
+    "expectedStatus": 200,
+    "shouldModifyKit": true
+  },
+  {
+    "scenario": "28_add_31_unique_products",
+    "kitId": 1,
+    "requestBody": [
+      { "id": 1, "quantity": 1 }, { "id": 2, "quantity": 1 },
+      { "id": 3, "quantity": 1 }, { "id": 4, "quantity": 1 },
+      { "id": 5, "quantity": 1 }, { "id": 6, "quantity": 1 },
+      { "id": 7, "quantity": 1 }, { "id": 8, "quantity": 1 },
+      { "id": 9, "quantity": 1 }, { "id": 10, "quantity": 1 },
+      { "id": 11, "quantity": 1 }, { "id": 12, "quantity": 1 },
+      { "id": 13, "quantity": 1 }, { "id": 14, "quantity": 1 },
+      { "id": 15, "quantity": 1 }, { "id": 16, "quantity": 1 },
+      { "id": 17, "quantity": 1 }, { "id": 18, "quantity": 1 },
+      { "id": 19, "quantity": 1 }, { "id": 20, "quantity": 1 },
+      { "id": 21, "quantity": 1 }, { "id": 22, "quantity": 1 },
+      { "id": 23, "quantity": 1 }, { "id": 24, "quantity": 1 },
+      { "id": 25, "quantity": 1 }, { "id": 26, "quantity": 1 },
+      { "id": 27, "quantity": 1 }, { "id": 28, "quantity": 1 },
+      { "id": 29, "quantity": 1 }, { "id": 30, "quantity": 1 },
+      { "id": 31, "quantity": 1 }
+    ],
+    "expectedStatus": 400,
+    "shouldModifyKit": false
+  },
+  {
+    "scenario": "29_add_46_unique_products",
+    "kitId": 1,
+    "requestBody": [
+      { "id": 1, "quantity": 1 }, { "id": 2, "quantity": 1 },
+      { "id": 3, "quantity": 1 }, { "id": 4, "quantity": 1 },
+      { "id": 5, "quantity": 1 }, { "id": 6, "quantity": 1 },
+      { "id": 7, "quantity": 1 }, { "id": 8, "quantity": 1 },
+      { "id": 9, "quantity": 1 }, { "id": 10, "quantity": 1 },
+      { "id": 11, "quantity": 1 }, { "id": 12, "quantity": 1 },
+      { "id": 13, "quantity": 1 }, { "id": 14, "quantity": 1 },
+      { "id": 15, "quantity": 1 }, { "id": 16, "quantity": 1 },
+      { "id": 17, "quantity": 1 }, { "id": 18, "quantity": 1 },
+      { "id": 19, "quantity": 1 }, { "id": 20, "quantity": 1 },
+      { "id": 21, "quantity": 1 }, { "id": 22, "quantity": 1 },
+      { "id": 23, "quantity": 1 }, { "id": 24, "quantity": 1 },
+      { "id": 25, "quantity": 1 }, { "id": 26, "quantity": 1 },
+      { "id": 27, "quantity": 1 }, { "id": 28, "quantity": 1 },
+      { "id": 29, "quantity": 1 }, { "id": 30, "quantity": 1 },
+      { "id": 31, "quantity": 1 }, { "id": 32, "quantity": 1 },
+      { "id": 33, "quantity": 1 }, { "id": 34, "quantity": 1 },
+      { "id": 35, "quantity": 1 }, { "id": 36, "quantity": 1 },
+      { "id": 37, "quantity": 1 }, { "id": 38, "quantity": 1 },
+      { "id": 39, "quantity": 1 }, { "id": 40, "quantity": 1 },
+      { "id": 41, "quantity": 1 }, { "id": 42, "quantity": 1 },
+      { "id": 43, "quantity": 1 }, { "id": 44, "quantity": 1 },
+      { "id": 45, "quantity": 1 }, { "id": 46, "quantity": 1 }
+    ],
+    "expectedStatus": 400,
+    "shouldModifyKit": false
+  }
+]

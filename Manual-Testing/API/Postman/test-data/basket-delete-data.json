@@ -1,0 +1,4 @@
+[
+  { "scenario": "105_delete_success", "orderId": 6, "expectedStatus": 200 },
+  { "scenario": "106_delete_not_found", "orderId": 9999, "expectedStatus": 404 }
+]

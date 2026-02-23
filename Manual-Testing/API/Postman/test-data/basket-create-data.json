@@ -1,0 +1,32 @@
+[
+  {
+    "scenario": "create_valid_with_deliveryTime",
+    "productsList": [{ "id": 1, "quantity": 2 }],
+    "deliveryTime": 10,
+    "expectedStatus": 200
+  },
+  {
+    "scenario": "create_valid_without_deliveryTime",
+    "productsList": [{ "id": 1, "quantity": 2 }],
+    "deliveryTime": null,
+    "expectedStatus": 200
+  },
+  {
+    "scenario": "create_invalid_deliveryTime_string",
+    "productsList": [{ "id": 1, "quantity": 2 }],
+    "deliveryTime": "десять",
+    "expectedStatus": 400
+  },
+  {
+    "scenario": "create_missing_productsList",
+    "productsList": null,
+    "deliveryTime": 10,
+    "expectedStatus": 400
+  },
+  {
+    "scenario": "create_empty_productsList",
+    "productsList": [],
+    "deliveryTime": 10,
+    "expectedStatus": 400
+  }
+]
