@@ -1,0 +1,682 @@
+{
+  "info": {
+    "_postman_id": "53a438e6-547b-4376-8d0e-ff8a987871e7",
+    "name": "Delivery Service Prilavok",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "36024811"
+  },
+  "item": [
+    {
+      "name": "Kits - Add products",
+      "item": [
+        {
+          "name": "Get kit – state before",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"GET before: status 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.environment.set(\"kitBeforeState\", pm.response.text());",
+                  "pm.environment.set(\"currentScenario\", pm.iterationData.get(\"scenario\"));"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/kits/{{kitId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "kits",
+                "{{kitId}}"
+              ]
+            },
+            "description": "## Get Kit – State Before\n\nRetrieves a kit by its unique identifier. This request is used to capture the **state of a kit before** a modification is applied, serving as a baseline snapshot in data-driven test scenarios.\n\n---\n\n### URL\n\n```\nGET {{base_url}}/api/v1/kits/:id\n\n ```\n\n### Variables\n\n| Variable | Type | Description |\n| --- | --- | --- |\n| `base_url` | Environment variable | The base URL of the Delivery Service API (e.g. `http://localhost:3000`). Set in the active environment. |\n| `id` | Path variable | The unique identifier of the kit to retrieve. Replace `:id` in the URL with the actual kit ID. |\n\n---\n\n### Post-response Script\n\nAfter a successful response, the script performs the following:\n\n1. **Asserts status 200** — verifies the request returned `200 OK`.\n    \n2. **Saves** **`kitBeforeState`** — stores the full response body (as a string) in the `kitBeforeState` environment variable. This snapshot can be compared against the kit's state after a modification.\n    \n3. **Saves** **`currentScenario`** — reads the `scenario` field from the current iteration data and stores it in the `currentScenario` environment variable, allowing subsequent requests to be aware of which test scenario is running."
+          },
+          "response": []
+        },
+        {
+          "name": "Add product to list",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "pm.variables.set(\"requestBody\", JSON.stringify(pm.iterationData.get(\"requestBody\")));",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const expectedStatus = parseInt(pm.iterationData.get(\"expectedStatus\"));",
+                  "",
+                  "pm.test(\"POST: status code matches expected\", function () {",
+                  "    pm.response.to.have.status(expectedStatus);",
+                  "});",
+                  "",
+                  "pm.test(\"POST: response is JSON\", function () {",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{{requestBody}}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/kits/{{kitId}}/products",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "kits",
+                "{{kitId}}",
+                "products"
+              ]
+            },
+            "description": "## Add Product to Kit\n\nAdds a product to a specific kit (list) identified by its kit ID.\n\n---\n\n### HTTP Method & URL\n\n```\nPOST {{base_url}}/api/v1/kits/:id/products\n\n ```\n\n---\n\n### Path Variables\n\n| Variable | Type | Description |\n| --- | --- | --- |\n| `id` | `Path variable` | The unique identifier of the kit to which the product will be added. |\n\n---\n\n### Request Body\n\n- **Type:** Raw JSON\n    \n- **Value:** `{{requestBody}}`\n    \n\nThe request body is set **dynamically** via the pre-request script, which reads the `requestBody` field from the current iteration data and serializes it to JSON:\n\n``` javascript\npm.variables.set(\"requestBody\", JSON.stringify(pm.iterationData.get(\"requestBody\")));\n\n ```\n\nThis allows the request body to vary across data-driven test runs.\n\n---\n\n### Post-Response Tests\n\nThe following tests are executed automatically after receiving a response:\n\n1. **Status code matches expected** — Reads the `expectedStatus` value from iteration data and asserts that the response status code matches it.\n    \n2. **Response is JSON** — Asserts that the `Content-Type` response header includes `application/json`."
+          },
+          "response": []
+        },
+        {
+          "name": "Get kit – state after",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const shouldModify = pm.iterationData.get(\"shouldModifyKit\") === true || ",
+                  "                     pm.iterationData.get(\"shouldModifyKit\") === \"true\";",
+                  "",
+                  "const beforeStateRaw = pm.environment.get(\"kitBeforeState\");",
+                  "const afterState = pm.response.json();",
+                  "",
+                  "let beforeState = null;",
+                  "",
+                  "if (beforeStateRaw) {",
+                  "    beforeState = JSON.parse(beforeStateRaw);",
+                  "}",
+                  "",
+                  "// Базовая проверка GET after",
+                  "pm.test(\"GET after: status 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "// Проверка изменения набора",
+                  "if (beforeState) {",
+                  "",
+                  "    if (shouldModify) {",
+                  "        pm.test(\"Kit should be modified\", function () {",
+                  "            pm.expect(afterState.productsList.length)",
+                  "              .to.not.eql(beforeState.productsList.length);",
+                  "        });",
+                  "    } else {",
+                  "        pm.test(\"Kit should NOT be modified\", function () {",
+                  "            pm.expect(afterState.productsList.length)",
+                  "              .to.eql(beforeState.productsList.length);",
+                  "        });",
+                  "    }",
+                  "}",
+                  "",
+                  "// Проверка суммирования quantity (duplicate case)",
+                  "if (pm.environment.get(\"expectedSummedQuantity\")) {",
+                  "",
+                  "    const expectedQty = parseInt(pm.environment.get(\"expectedSummedQuantity\"));",
+                  "",
+                  "    const targetProduct = afterState.productsList.find(p => p.id === 12);",
+                  "",
+                  "    pm.test(\"Duplicate product quantity summed correctly\", function () {",
+                  "        pm.expect(targetProduct).to.not.be.undefined;",
+                  "        pm.expect(targetProduct.quantity).to.eql(expectedQty);",
+                  "    });",
+                  "",
+                  "    pm.environment.unset(\"expectedSummedQuantity\");",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/kits/{{kitId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "kits",
+                "{{kitId}}"
+              ]
+            },
+            "description": "## Get Kit by ID — State After\n\nRetrieves a kit by its unique identifier. This request is used as a **post-action check** in test scenarios — it fetches the kit's current state after a modification attempt and validates whether the kit was changed as expected.\n\n---\n\n### Request\n\n**Method:** `GET`  \n**URL:** `{{base_url}}/api/v1/kits/:id`\n\n#### Variables\n\n| Variable | Type | Description |\n| --- | --- | --- |\n| `base_url` | Environment variable | The base URL of the Delivery Service API (e.g. `http://localhost:3000`). Set in the active environment. |\n| `id` | Path variable | The unique identifier of the kit to retrieve. Must be set before sending the request. |\n\n---\n\n### Expected Response\n\n**Status:** `200 OK`  \n**Body:** A JSON object representing the kit, including a `productsList` array of products belonging to the kit.\n\n---\n\n### Post-response Script Checks\n\nThe post-response script performs the following automated validations:\n\n**1\\. Status 200**  \nAsserts that the response status code is `200 OK`.\n\n**2\\. Kit modification check** _(runs when_ `_kitBeforeState_` _environment variable is set)_  \nCompares the kit's `productsList` length before and after the operation, using the `kitBeforeState` environment variable (a JSON snapshot saved prior to the action) and the `shouldModifyKit` iteration data value:\n\n- If `shouldModifyKit` is `true` — asserts that the `productsList` length **has changed** (kit was modified).\n    \n- If `shouldModifyKit` is `false` — asserts that the `productsList` length **has not changed** (kit was not modified).\n    \n\n**3\\. Duplicate product quantity summing** _(runs when_ `_expectedSummedQuantity_` _environment variable is set)_  \nChecks that when a product is added to a kit more than once, its `quantity` values are summed rather than duplicated. Specifically, it looks for the product with `id: 12` and asserts its `quantity` equals the value stored in `expectedSummedQuantity`. The variable is unset after the check.\n\n---\n\n### Related Environment Variables\n\n| Variable | Description |\n| --- | --- |\n| `kitBeforeState` | JSON snapshot of the kit's state before the tested operation. Used for before/after comparison. |\n| `expectedSummedQuantity` | Expected total quantity for a duplicate product (id: 12) after summing. Cleared after the test runs. |"
+          },
+          "response": []
+        }
+      ],
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Couriers",
+      "item": [
+        {
+          "name": "Calculate Fast Delivery",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "function xmlTag(name, value) {",
+                  "    if (value === null || value === undefined) {",
+                  "        return \"\";",
+                  "    }",
+                  "    return `<${name}>${value}</${name}>`;",
+                  "}",
+                  "",
+                  "const body =",
+                  "`<InputModel>",
+                  "${xmlTag(\"productsCount\", pm.iterationData.get(\"productsCount\"))}",
+                  "${xmlTag(\"productsWeight\", pm.iterationData.get(\"productsWeight\"))}",
+                  "${xmlTag(\"deliveryTime\", pm.iterationData.get(\"deliveryTime\"))}",
+                  "</InputModel>`;",
+                  "",
+                  "pm.variables.set(\"xmlBody\", body);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const expectedStatus = parseInt(pm.iterationData.get(\"expectedStatus\"));",
+                  "",
+                  "pm.test(\"Status code matches expected\", function () {",
+                  "    pm.response.to.have.status(expectedStatus);",
+                  "});",
+                  "",
+                  "// Если статус 400 — дальше проверки XML не делаем",
+                  "if (expectedStatus !== 200) {",
+                  "    return;",
+                  "}",
+                  "",
+                  "// Проверка Content-Type",
+                  "pm.test(\"Response is XML\", function () {",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\"))",
+                  "      .to.include(\"xml\");",
+                  "});",
+                  "",
+                  "// Парсим XML",
+                  "const xml2Json = require('xml2js');",
+                  "let parsed;",
+                  "",
+                  "xml2Json.parseString(pm.response.text(), function (err, result) {",
+                  "    parsed = result;",
+                  "});",
+                  "",
+                  "pm.test(\"XML structure exists\", function () {",
+                  "    pm.expect(parsed).to.have.property(\"response\");",
+                  "});",
+                  "",
+                  "const responseNode = parsed.response.$;",
+                  "",
+                  "if (pm.iterationData.has(\"expectedPossible\")) {",
+                  "    pm.test(\"Delivery possibility matches\", function () {",
+                  "        pm.expect(responseNode.isItPossibleToDeliver)",
+                  "          .to.eql(String(pm.iterationData.get(\"expectedPossible\")));",
+                  "    });",
+                  "}",
+                  "",
+                  "if (pm.iterationData.has(\"expectedHostCost\")) {",
+                  "    pm.test(\"Host delivery cost matches\", function () {",
+                  "        pm.expect(parseInt(responseNode.hostDeliveryCost))",
+                  "          .to.eql(pm.iterationData.get(\"expectedHostCost\"));",
+                  "    });",
+                  "}",
+                  "",
+                  "if (pm.iterationData.has(\"expectedClientCost\")) {",
+                  "    pm.test(\"Client delivery cost matches\", function () {",
+                  "        pm.expect(parseInt(responseNode.clientDeliveryCost))",
+                  "          .to.eql(pm.iterationData.get(\"expectedClientCost\"));",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{{xmlBody}}",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/fast-delivery/v3.1.1/calculate-delivery.xml",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "fast-delivery",
+                "v3.1.1",
+                "calculate-delivery.xml"
+              ]
+            },
+            "description": "## Calculate Fast Delivery\n\nCalculates the delivery cost and feasibility for the **Fast Delivery** service. The endpoint accepts an XML payload with product and delivery details, and returns an XML response indicating whether delivery is possible along with the associated costs.\n\n---\n\n## Endpoint\n\n| Property | Value |\n| --- | --- |\n| **Method** | `POST` |\n| **URL** | `{{base_url}}/fast-delivery/v3.1.1/calculate-delivery.xml` |\n| **Collection** | Delivery Service Prilavok |\n\n---\n\n## Request Body\n\nThe body is sent as **raw XML** and is built dynamically in the pre-request script using iteration data. The constructed XML is stored in the `{{xmlBody}}` variable, which is referenced in the request body field.\n\n**XML Structure:**\n\n``` xml\n<InputModel>\n  <productsCount>{value}</productsCount>\n  <productsWeight>{value}</productsWeight>\n  <deliveryTime>{value}</deliveryTime>\n</InputModel>\n\n ```\n\n### Input Fields\n\n| Field | Source | Description |\n| --- | --- | --- |\n| `productsCount` | `pm.iterationData.get(\"productsCount\")` | Number of products to deliver |\n| `productsWeight` | `pm.iterationData.get(\"productsWeight\")` | Total weight of the products |\n| `deliveryTime` | `pm.iterationData.get(\"deliveryTime\")` | Requested delivery time |\n\n> Tags with `null` or `undefined` values are omitted from the XML body automatically. \n  \n\n---\n\n## Variables\n\n| Variable | Scope | Description |\n| --- | --- | --- |\n| `{{base_url}}` | Environment | Base URL of the Delivery Service API |\n| `{{xmlBody}}` | Local (request-scoped) | Dynamically generated XML body, set by the pre-request script |\n\n---\n\n## Pre-request Script\n\nThe pre-request script reads `productsCount`, `productsWeight`, and `deliveryTime` from the current iteration data and assembles them into an XML string. The result is stored as the local variable `xmlBody`, which is used as the raw request body.\n\n---\n\n## Test Validations (Post-response Script)\n\nThe post-response script performs the following checks using values from iteration data:\n\n- **Status code** — Asserts that the HTTP response status matches `expectedStatus` from iteration data.\n    \n- **Early exit** — If the expected status is not `200`, no further checks are performed.\n    \n- **Content-Type** — Validates that the `Content-Type` response header includes `\"xml\"`.\n    \n- **XML structure** — Parses the response body and asserts that a `response` root node exists.\n    \n- **Delivery possibility** _(optional)_ — If `expectedPossible` is present in iteration data, asserts that `isItPossibleToDeliver` in the response matches.\n    \n- **Host delivery cost** _(optional)_ — If `expectedHostCost` is present, asserts that `hostDeliveryCost` matches the expected integer value.\n    \n- **Client delivery cost** _(optional)_ — If `expectedClientCost` is present, asserts that `clientDeliveryCost` matches the expected integer value.\n    \n\n---\n\n## Expected Response (200 OK)\n\n``` xml\n<response isItPossibleToDeliver=\"true\" hostDeliveryCost=\"150\" clientDeliveryCost=\"200\" />\n\n ```\n\n### Response Attributes\n\n| Attribute | Type | Description |\n| --- | --- | --- |\n| `isItPossibleToDeliver` | `string` (`\"true\"` / `\"false\"`) | Whether delivery is feasible |\n| `hostDeliveryCost` | `integer` | Delivery cost for the host/seller |\n| `clientDeliveryCost` | `integer` | Delivery cost for the client/buyer |"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Basket",
+      "item": [
+        {
+          "name": "Create order (basket)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const productsList = pm.iterationData.get(\"productsList\");",
+                  "const deliveryTime = pm.iterationData.get(\"deliveryTime\");",
+                  "",
+                  "let body = {};",
+                  "",
+                  "if (productsList !== null && productsList !== undefined) {",
+                  "  body.productsList = productsList;",
+                  "}",
+                  "",
+                  "if (deliveryTime !== null && deliveryTime !== undefined) {",
+                  "  body.deliveryTime = deliveryTime;",
+                  "}",
+                  "",
+                  "pm.variables.set(\"requestBody\", JSON.stringify(body));"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const expectedStatus = parseInt(pm.iterationData.get(\"expectedStatus\"));",
+                  "",
+                  "pm.test(\"Status code matches\", function () {",
+                  "  pm.response.to.have.status(expectedStatus);",
+                  "});",
+                  "",
+                  "if (expectedStatus !== 200) return;",
+                  "",
+                  "const json = pm.response.json();",
+                  "",
+                  "pm.test(\"Order structure valid\", function () {",
+                  "  pm.expect(json).to.have.property(\"id\");",
+                  "  pm.expect(json).to.have.property(\"productsList\");",
+                  "  pm.expect(json.productsList).to.be.an(\"array\");",
+                  "  pm.expect(json).to.have.property(\"deliveryTime\");",
+                  "  pm.expect(json).to.have.property(\"deliveryPrice\");",
+                  "});",
+                  "",
+                  "// сохраняем id для следующих шагов",
+                  "pm.environment.set(\"createdOrderId\", json.id);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{{requestBody}}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/orders",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "orders"
+              ]
+            },
+            "description": "## Create Order (Basket)\n\nCreates a new order by sending a dynamically constructed JSON body built from iteration data variables. On success, the created order's ID is saved to the environment for use in subsequent requests.\n\n---\n\n### Request Details\n\n| Field  | Value                        |\n|--------|------------------------------|\n| Method | `POST`                       |\n| URL    | `{{base_url}}/api/v1/orders` |\n\n---\n\n### Request Body\n\nThe body is raw JSON, dynamically constructed in the pre-request script from iteration data and injected via the `{{requestBody}}` variable.\n\n| Parameter      | Type    | Description                                      |\n|----------------|---------|--------------------------------------------------|\n| `productsList` | Array   | List of products to include in the order basket  |\n| `deliveryTime` | String  | Desired delivery time for the order              |\n\n> **Note:** Both fields are optional in the body — they are only included if present in the iteration data.\n\n**Example body:**\n```json\n{\n  \"productsList\": [\"item1\", \"item2\"],\n  \"deliveryTime\": \"2024-01-01T12:00:00Z\"\n}\n```\n\n---\n\n### Pre-request Script\n\nReads `productsList` and `deliveryTime` from iteration data and constructs the JSON request body, storing it in the `requestBody` variable:\n\n```javascript\nconst productsList = pm.iterationData.get(\"productsList\");\nconst deliveryTime = pm.iterationData.get(\"deliveryTime\");\n\nlet body = {};\nif (productsList !== null && productsList !== undefined) {\n  body.productsList = productsList;\n}\nif (deliveryTime !== null && deliveryTime !== undefined) {\n  body.deliveryTime = deliveryTime;\n}\npm.variables.set(\"requestBody\", JSON.stringify(body));\n```\n\n---\n\n### Post-response Script\n\nValidates the response status code against `expectedStatus` from iteration data. If the status is `200`, validates the order structure and saves the order ID to the environment.\n\n**Validations performed (on 200):**\n- Response contains `id`\n- Response contains `productsList` (array)\n- Response contains `deliveryTime`\n- Response contains `deliveryPrice`\n\n**Environment variable set on success:**\n\n| Variable         | Value      | Description                              |\n|------------------|------------|------------------------------------------|\n| `createdOrderId` | `json.id`  | The ID of the newly created order        |\n\n---\n\n### Iteration Data Variables\n\nThe following variables must be provided via a data file when running in a Collection Runner:\n\n| Variable         | Type    | Description                                              |\n|------------------|---------|----------------------------------------------------------|\n| `productsList`   | Array   | Products to add to the order                             |\n| `deliveryTime`   | String  | Desired delivery time                                    |\n| `expectedStatus` | Integer | Expected HTTP status code to validate against (e.g. `200`) |\n"
+          },
+          "response": []
+        },
+        {
+          "name": "Add product to order (basket)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const orderId = pm.iterationData.get(\"orderId\") || pm.environment.get(\"createdOrderId\");",
+                  "pm.variables.set(\"orderId\", orderId);",
+                  "",
+                  "const productsList = pm.iterationData.get(\"productsList\");",
+                  "",
+                  "let body = {};",
+                  "if (productsList !== null && productsList !== undefined) {",
+                  "  body.productsList = productsList;",
+                  "}",
+                  "",
+                  "pm.variables.set(\"requestBody\", JSON.stringify(body));"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const expectedStatus = parseInt(pm.iterationData.get(\"expectedStatus\"));",
+                  "",
+                  "pm.test(\"Status code matches\", function () {",
+                  "  pm.response.to.have.status(expectedStatus);",
+                  "});",
+                  "",
+                  "if (expectedStatus !== 200) return;",
+                  "",
+                  "const json = pm.response.json();",
+                  "",
+                  "pm.test(\"Products list returned\", function () {",
+                  "  pm.expect(json).to.have.property(\"productsList\");",
+                  "  pm.expect(json.productsList).to.be.an(\"array\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{{requestBody}}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/orders/{{orderId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "orders",
+                "{{orderId}}"
+              ]
+            },
+            "description": "## Add Product to Order (Basket)\n\nUpdates an existing order by adding or replacing the list of products in the order basket.\n\n---\n\n### Endpoint\n\n**Method:** `PUT`  \n**URL:** `{{base_url}}/api/v1/orders/{{orderId}}`\n\n---\n\n### Path Variable\n\n| Variable | Description |\n|----------|-------------|\n| `orderId` | The unique ID of the order to update. Resolved from iteration data or the environment variable `createdOrderId` via the pre-request script. |\n\n---\n\n### Request Body\n\n**Content-Type:** `application/json`\n\nThe request body is dynamically constructed by the pre-request script and set via the `{{requestBody}}` variable.\n\n```json\n{\n  \"productsList\": [ /* array of product objects */ ]\n}\n```\n\n| Field | Type | Description |\n|-------|------|-------------|\n| `productsList` | `array` | The list of products to associate with the order. Sourced from iteration data. |\n\n---\n\n### Expected Response\n\n**Status:** `200 OK`\n\n```json\n{\n  \"productsList\": [ /* updated array of products */ ]\n}\n```\n\nThe response body contains a `productsList` array reflecting the updated state of the order basket.\n\n---\n\n### Variables Used\n\n| Variable | Scope | Description |\n|----------|-------|-------------|\n| `base_url` | Environment | The base URL of the API server. |\n| `orderId` | Local (set by pre-request script) | The ID of the order to update. Taken from iteration data or `createdOrderId` environment variable. |\n| `requestBody` | Local (set by pre-request script) | The serialized JSON request body containing `productsList`. |\n\n---\n\n### Scripts\n\n**Pre-request script** resolves `orderId` from iteration data (falling back to `createdOrderId` from the environment) and builds the JSON request body with `productsList` from iteration data.\n\n**Post-response script** asserts that the response status code matches `expectedStatus` from iteration data. If the expected status is `200`, it additionally verifies that the response JSON contains a `productsList` array."
+          },
+          "response": []
+        },
+        {
+          "name": "Get products in order (basket list)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status 200\", function () {",
+                  "  pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "const json = pm.response.json();",
+                  "",
+                  "pm.test(\"Response is array\", function () {",
+                  "  pm.expect(json).to.be.an(\"array\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/orders/{{orderId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "orders",
+                "{{orderId}}"
+              ]
+            },
+            "description": "## Get Products in Order (Basket List)\n\nRetrieves the list of products (items) associated with a specific order/basket by its ID.\n\n### Endpoint\n\n```\nGET {{base_url}}/api/v1/orders/{{orderId}}\n```\n\n### Variables\n\n| Variable | Description |\n|----------|-------------|\n| `base_url` | The base URL of the API (e.g., `https://api.example.com`) |\n| `orderId` | The unique identifier of the order whose product list should be retrieved |\n\n### Expected Response\n\n- **Status:** `200 OK`\n- **Body:** An array of products/items belonging to the specified order\n\n```json\n[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    ...\n  }\n]\n```\n\n> The response is expected to be an **array**. A `200` status code and an array response body are validated by the existing tests."
+          },
+          "response": []
+        },
+        {
+          "name": "Complete order (basket)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status 200\", function () {",
+                  "  pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "const json = pm.response.json();",
+                  "",
+                  "pm.test(\"Order completed\", function () {",
+                  "  pm.expect(json.ok).to.eql(true);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}}/api/v1/orders/{{orderId}}/complete",
+              "host": [
+                "{{base_url}}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "orders",
+                "{{orderId}}",
+                "complete"
+              ]
+            },
+            "description": "## Complete Order (Basket)\n\nMarks an existing order as **completed**. This endpoint transitions the order identified by `orderId` to a completed state.\n\n---\n\n### HTTP Method & URL\n\n```\nPUT {{base_url}}}/api/v1/orders/{{orderId}}/complete\n```\n\n---\n\n### Variables\n\n| Variable | Type | Description |\n|---|---|---|\n| `base_url` | Environment variable | The base URL of the Delivery Service API (e.g. `https://api.example.com`). Defined in the active environment. |\n| `orderId` | Path variable | The unique identifier of the order to be completed. Replace with the actual order ID (e.g. `createdOrderId` from a previous step). |\n\n---\n\n### Request Body\n\nNo request body is required for this endpoint.\n\n---\n\n### Expected Response\n\n**Status:** `200 OK`\n\n**Body:**\n```json\n{\n  \"ok\": true\n}\n```\n\nThe response returns a JSON object with `ok` set to `true`, confirming that the order was successfully marked as completed."
+          },
+          "response": []
+        },
+        {
+          "name": "Delete order (basket)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const expectedStatus = parseInt(pm.iterationData.get(\"expectedStatus\"));",
+                  "",
+                  "pm.test(\"Status code matches\", function () {",
+                  "  pm.response.to.have.status(expectedStatus);",
+                  "});",
+                  "",
+                  "if (expectedStatus !== 200) return;",
+                  "",
+                  "const json = pm.response.json();",
+                  "",
+                  "pm.test(\"Delete successful\", function () {",
+                  "  pm.expect(json.ok).to.eql(true);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/orders/{{orderId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "orders",
+                "{{orderId}}"
+              ]
+            },
+            "description": "## Delete Order (Basket)\n\nDeletes an existing order (basket) identified by `orderId`.\n\n**Method:** `DELETE`  \n**URL:** `{{base_url}}/api/v1/orders/{{orderId}}`\n\n---\n\n### URL Variables\n\n| Variable | Description |\n|----------|-------------|\n| `base_url` | The base URL of the Delivery Service API (e.g. `https://api.example.com`) |\n| `orderId` | The unique identifier of the order/basket to be deleted |\n\n---\n\n### Request Body\n\nNone.\n\n---\n\n### Response\n\n**Success — `200 OK`**\n\n```json\n{\n  \"ok\": true\n}\n```\n\nThe response contains `ok: true` to confirm the order was successfully deleted.\n\n**Other status codes** are validated against the expected status defined in iteration data (`expectedStatus`). If the status does not match `200`, no further response body checks are performed."
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}
