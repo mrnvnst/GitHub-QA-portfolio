@@ -17,7 +17,7 @@
 
 <br>
 
-#### 1. [Тестирование веб-приложения для построения городских маршрутов](https://github.com/mrnvnst/GitHub-QA-portfolio/tree/main/Manual-Testing/Web-App)
+#### 1. [Тестирование веб-приложения для построения городских маршрутов](https://github.com/mrnvnst/GitHub-QA-portfolio/tree/main/Manual-Testing/Web-App/Route-Planning-Web-App)
 
 В рамках проекта выполнено функциональное и регрессионное тестирование веб-интерфейса.
 
@@ -135,7 +135,7 @@ All projects are available in both Russian and English.
 
 <br>
 
-#### 1. [Urban Route Planning Web Application Testing](https://github.com/mrnvnst/GitHub-QA-portfolio/tree/main/Manual-Testing/Web-App)
+#### 1. [Urban Route Planning Web Application Testing](https://github.com/mrnvnst/GitHub-QA-portfolio/tree/main/Manual-Testing/Web-App/Route-Planning-Web-App)
 
 The project includes functional and regression testing of a web application.
 
