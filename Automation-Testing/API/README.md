@@ -71,11 +71,21 @@ allure serve ./allure-results
 
 После выполнения команды автоматически откроется HTML-отчёт с результатами тестирования.
 
+Общий обзор отчёта с количеством успешных и неуспешных тестов:
+
+![Allure Report Overview](attachments-md/allure-report-overview.png)
+
+Отчет для упавшего теста с информацией о проверке и причине ошибки:
+
+![Allure Failed Test](attachments-md/allure-failed-test.png)
+
 ---
 
 ### Найденные дефекты
 
 В ходе тестирования был обнаружен дефект в работе эндпоинта создания заказа.
+
+![Test Failure Terminal](attachments-md/test-failure-terminal.png)
 
 #### ID: BUG-API-001
 #### Создание заказа POST /api/orders: Статус 200 и создание заказа без авторизации пользователя
@@ -169,7 +179,7 @@ API tests were implemented for the following endpoint groups.
 
 ### Running Tests
 
-#### Install dependencies::
+#### Install dependencies:
 
 ```
 pip install -r requirements.txt
@@ -189,9 +199,19 @@ allure serve ./allure-results
 
 The command opens an HTML report containing test results.
 
+Overview of the report with the summary of passed and failed tests:
+
+![Allure Report Overview](attachments-md/allure-report-overview.png)
+
+Failed test report with information about the test case:
+
+![Allure Failed Test](attachments-md/allure-failed-test.png)
+
 ---
 
 ### Detected Defect
+
+![Test Failure Terminal](attachments-md/test-failure-terminal.png)
 
 #### ID: BUG-API-001
 #### Order Creation POST /api/orders: Status 200 and order creation without authorization
