@@ -147,6 +147,24 @@
 - подготовлен отчёт о выполнении тестов в Allure;
 - оформлен баг-репорт для выявленного дефекта.
 
+#### 3. [Автоматизированное UI-тестирование веб-приложения конструктора бургеров](https://github.com/mrnvnst/GitHub-QA-portfolio/tree/main/Automation-Testing/UI-Tests)
+
+Проект демонстрирует автоматизацию пользовательского интерфейса веб-приложения.
+
+Тесты реализованы на **Python** с использованием **pytest** и **Selenium WebDriver**.  
+Для построения архитектуры тестов применяется паттерн **Page Object Model (POM)**.  
+Результаты выполнения тестов визуализируются в **Allure Report**.
+
+**В рамках проекта:**
+
+- реализованы UI-автотесты для ключевых пользовательских сценариев;
+- протестирована основная функциональность конструктора бургеров;
+- проверена работа раздела «Лента заказов»;
+- реализована проверка всплывающих окон интерфейса;
+- протестировано добавление ингредиентов в заказ и обновление счётчиков;
+- выполнено кроссбраузерное тестирование (Chrome, Firefox);
+- реализована архитектура автотестов с использованием Page Object Model;
+- подготовлен отчёт о выполнении тестов в Allure.
 
 
 #### Инструменты
@@ -155,8 +173,11 @@
 - Pytest
 - Pytest-cov
 - Requests
-- Allure
+- Allure Report
 - Faker
+- Selenium WebDriver
+- Page Object Model (POM)
+- webdriver-manager
 
 </details>
 
@@ -277,3 +298,76 @@ This project demonstrates manual and partially automated REST API testing.
 - SQL
 
 </details>
+<<<<<<< HEAD
+=======
+
+<details>
+<summary><b>Test Automation Projects</b></summary>
+
+<br>
+
+### Automation Testing Projects
+
+#### 1. [Automated Testing of Backend Logic for a Burger Builder Web Application](https://github.com/mrnvnst/GitHub-QA-portfolio/tree/main/Automation-Testing/Stellar-Burgers)
+
+This project demonstrates automated unit testing of the backend logic for the **Stellar Burgers** application.
+
+The tests validate the functionality of the `Burger` class responsible for burger composition, ingredient management, and price calculation.
+
+**Project highlights:**
+
+- unit tests implemented for the `Burger` class;
+- testing ingredient addition, removal, and reordering;
+- verification of price calculation and receipt generation;
+- usage of `pytest` fixtures and parameterized tests;
+- use of mock objects to isolate dependencies;
+- **100% test coverage achieved**;
+- HTML coverage report generated with `pytest-cov`.
+
+#### 2. [Automated Testing of Order Processing REST API](https://github.com/mrnvnst/GitHub-QA-portfolio/tree/main/Automation-Testing/API)
+
+This project demonstrates automated testing of a REST API responsible for user registration, authentication, and order creation.
+
+**Within the project:**
+
+- API tests were implemented for user registration, login, and order creation endpoints;
+- positive and negative test scenarios were implemented;
+- dynamic test data generation was used;
+- pytest fixtures and parameterization were applied;
+- Allure reports were generated for test execution results;
+- a defect in the order creation endpoint was identified.
+
+#### 3. [Automated UI Testing of a Burger Builder Web Application](https://github.com/mrnvnst/GitHub-QA-portfolio/tree/main/Automation-Testing/UI-Automation-Burger-Builder)
+
+This project demonstrates automated UI testing of a web application.
+
+Tests are implemented in **Python** using **pytest** and **Selenium WebDriver**.  
+The test architecture follows the **Page Object Model (POM)** design pattern.  
+Test execution results are visualized using **Allure Report**.
+
+**Project scope includes:**
+
+- implementation of UI automated tests for key user scenarios;
+- testing of core burger builder functionality;
+- validation of the **Order Feed** section behavior;
+- verification of modal windows and interface interactions;
+- testing ingredient addition and counter updates;
+- cross-browser testing (Chrome, Firefox);
+- implementation of a Page Object Model test architecture;
+- generation of test execution reports with Allure.
+
+
+#### Tools
+
+- Python
+- Pytest
+- Pytest-cov
+- Requests
+- Allure Report
+- Faker
+- Selenium WebDriver
+- Page Object Model (POM)
+- webdriver-manager
+
+</details>
+>>>>>>> fa024d0 (update portfolio readme)
