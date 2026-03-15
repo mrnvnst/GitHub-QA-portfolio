@@ -262,7 +262,7 @@ This project focuses on testing a courier mobile application used to process and
 - bug reports were documented in **Yandex Tracker and Jira**;
 - testing results and conclusions for the mobile application were prepared.
 
-Projects [#3](#scooter-rental-web-application-testing) and [#4](#4-scooter-rental-courier-mobile-application-testing) demonstrate testing of different layers of a delivery platform:
+Projects [#3](#3-scooter-rental-web-application-testing) and [#4](#4-scooter-rental-courier-mobile-application-testing) demonstrate testing of different layers of a delivery platform:
 
 - customer web application
 - courier mobile application
@@ -298,8 +298,6 @@ This project demonstrates manual and partially automated REST API testing.
 - SQL
 
 </details>
-<<<<<<< HEAD
-=======
 
 <details>
 <summary><b>Test Automation Projects</b></summary>
@@ -370,4 +368,3 @@ Test execution results are visualized using **Allure Report**.
 - webdriver-manager
 
 </details>
->>>>>>> fa024d0 (update portfolio readme)
