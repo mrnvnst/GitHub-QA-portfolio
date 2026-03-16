@@ -96,7 +96,7 @@ allure serve ./allure-results
 
 **Серьёзность**
 
-Высокая
+Критическая
 
 **Шаги воспроизведения**
 
@@ -222,7 +222,7 @@ The system allows creating an order without user authorization.
 
 **Severity**
 
-High
+Critical
 
 **Steps to reproduce**
 
